@@ -21,8 +21,8 @@ namespace VERIFICA_DI_RIPASSO___C__2026
                 {
                     if (alfabeto[j] == fraseCifrata[i])
                     {
-                        int posizione = alfabeto.IndexOf("");
-                        int nuovaPosizione = (posizione - 3);
+                        int nuovaPosizione = (j - 3 + 26) % 26;
+                        fraseDecifrata += alfabeto[nuovaPosizione];
 
                     }
                 }
@@ -38,6 +38,7 @@ namespace VERIFICA_DI_RIPASSO___C__2026
 
             string[] righe = File.ReadAllLines("File.txt").ToArray();
 
+            listBox1.Items.Clear()
 
             //Decifrare soltanto le frasi che si trovano in posizione pari nel file: 2ª, 4ª, 6ª, ...
 
@@ -45,6 +46,8 @@ namespace VERIFICA_DI_RIPASSO___C__2026
             {
                 string fraseDecifrata = Decifra(righe[i]);
                 righe[i] = fraseDecifrata;
+
+                listBox1.Items.Add(fraseDecifrata);
             }
 
             if (File.Exists("Soluzioni.txt"))
